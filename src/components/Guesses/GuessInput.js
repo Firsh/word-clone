@@ -38,7 +38,7 @@ function GuessInput({ newGuess, gameStatus, guesses }) {
           break;
         default:
           // ✅ Lesson Learned: useState's second element can take a "function that calculates it from the previous state"
-          // This is called and updater function
+          // This is called an updater function
           // Helpful to avoid accessing state inside useEffect when I don't want it as a depencency (avoid inf. loop)
           setPrelimGuess(prevGuess => {
             // ✅ Lesson Learned: when value "comes from" state, the input's constraints won't apply

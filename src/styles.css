@@ -277,6 +277,7 @@ h1 {
   height: 35px;
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  font-weight: bold;
 }
 
 .keyboard kbd.big-key {
