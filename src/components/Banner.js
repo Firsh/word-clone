@@ -12,7 +12,7 @@ function Banner({ gameStatus, answer, guessCount }) {
   } else {
     moodClass = "sad";
     bannerText = `Sorry, the correct answer is <strong>${answer}</strong>.`;
-  };
+  }
   return (
     <div className={`${moodClass} banner`} >
       <p dangerouslySetInnerHTML={{ __html: bannerText }} />
