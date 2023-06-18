@@ -149,7 +149,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 6.75rem;
 }
 
 .guess-input-wrapper label {
@@ -242,12 +241,56 @@ h1 {
 
 /* My extras */
 .agane {
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 3px;
   margin-top: 10px;
   padding: 12px 16px;
 }
 
+.agane:focus {
+  border: 2px solid white;
+  outline: none;
+}
+
 .agane:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.keyboard div {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.keyboard kbd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 35px;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.keyboard kbd.big-key {
+  width: 40px;
+}
+
+kbd.incorrect {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+kbd.correct {
+  background: rgba(0, 133, 75, 0.3);
+}
+
+kbd.misplaced {
+  background: rgba(255, 200, 0, 0.3);
 }

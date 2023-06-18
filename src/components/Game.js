@@ -6,6 +6,7 @@ import GuessInput from './Guesses/GuessInput';
 import GuessList from './Guesses/GuessList';
 import { checkGuess } from "../game-helpers";
 import Banner from './Banner';
+
 import { NUM_OF_GUESSES_ALLOWED } from '../constants';
 
 // Pick a random word on every pageload.
@@ -14,15 +15,17 @@ let answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
+  console.log("Game render");
   const [guesses, setGuesses] = React.useState([]);
   function newGuess(prelimGuess) {
-    setGuesses([...guesses, prelimGuess]);
+    setGuesses([...guesses, { word: prelimGuess, result: checkGuess(prelimGuess, answer) }]);
   }
-  const lastGuessResult = checkGuess(guesses.slice(-1)[0], answer)
+
+  const lastGuessResult = guesses.length && guesses.slice(-1)[0].result;
   let gameStatus = "playing";
   if (lastGuessResult && lastGuessResult.filter(slot => slot.status === "correct").length === 5) {
     gameStatus = "won";
-  } else if (guesses.length === NUM_OF_GUESSES_ALLOWED) {
+  } else if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
     gameStatus = "lost"
   }
   function agane() {
@@ -32,8 +35,8 @@ function Game() {
   }
   return (
     <>
-      <GuessList guesses={guesses} answer={answer} />
-      <GuessInput newGuess={newGuess} gameStatus={gameStatus} />
+      <GuessList guesses={guesses} />
+      <GuessInput newGuess={newGuess} gameStatus={gameStatus} guesses={guesses} />
       <Banner gameStatus={gameStatus} answer={answer} guessCount={guesses.length} agane={agane} />
     </>
   );

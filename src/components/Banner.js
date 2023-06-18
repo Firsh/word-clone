@@ -1,6 +1,12 @@
 import React from "react";
 
 function Banner({ gameStatus, answer, guessCount, agane }) {
+  const aganeButton = React.useRef(null);
+  React.useEffect(() => {
+    if (aganeButton.current) {
+      aganeButton.current.focus();
+    }
+  }, [gameStatus]);
   if (gameStatus === "playing") {
     return null;
   }
@@ -13,10 +19,11 @@ function Banner({ gameStatus, answer, guessCount, agane }) {
     moodClass = "sad";
     bannerText = `Sorry, the correct answer is <strong>${answer}</strong>.`;
   }
+
   return (
     <div className={`${moodClass} banner`} >
       <p dangerouslySetInnerHTML={{ __html: bannerText }} />
-      <button className="agane" onClick={agane}>Wanna go agane?</button>
+      <button ref={aganeButton} className="agane" onClick={agane}>Wanna go agane?</button>
     </div>
   );
 }
