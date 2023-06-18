@@ -1,6 +1,6 @@
 import React from "react";
 
-function Banner({ gameStatus, answer, guessCount }) {
+function Banner({ gameStatus, answer, guessCount, agane }) {
   if (gameStatus === "playing") {
     return null;
   }
@@ -16,6 +16,7 @@ function Banner({ gameStatus, answer, guessCount }) {
   return (
     <div className={`${moodClass} banner`} >
       <p dangerouslySetInnerHTML={{ __html: bannerText }} />
+      <button className="agane" onClick={agane}>Wanna go agane?</button>
     </div>
   );
 }

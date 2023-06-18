@@ -9,7 +9,7 @@ import Banner from './Banner';
 import { NUM_OF_GUESSES_ALLOWED } from '../constants';
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+let answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
@@ -25,11 +25,16 @@ function Game() {
   } else if (guesses.length === NUM_OF_GUESSES_ALLOWED) {
     gameStatus = "lost"
   }
+  function agane() {
+    setGuesses([]);
+    answer = sample(WORDS);
+    console.info({ answer });
+  }
   return (
     <>
       <GuessList guesses={guesses} answer={answer} />
       <GuessInput newGuess={newGuess} gameStatus={gameStatus} />
-      <Banner gameStatus={gameStatus} answer={answer} guessCount={guesses.length} />
+      <Banner gameStatus={gameStatus} answer={answer} guessCount={guesses.length} agane={agane} />
     </>
   );
 }
